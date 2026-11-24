@@ -1,0 +1,370 @@
+/* ==========================================================
+   KRANOVA - style.css
+   Warna diambil dari logo dan infografis KRANOVA:
+   biru tua, biru, hijau daun, dengan motif serpihan HDPE.
+   ========================================================== */
+
+/* 1. Variabel dan pengaturan umum */
+:root {
+    --navy: #0e2a5c;
+    --biru: #1f5fae;
+    --hijau: #2e7d22;
+    --hijau-tua: #236119;
+    --kertas: #f5f8f6;
+    --putih: #ffffff;
+    --teks: #1a2433;
+    --redup: #4d5b6e;
+    --garis: #d5dee6;
+    --font-judul: "Bricolage Grotesque", "Trebuchet MS", Arial, sans-serif;
+    --font-isi: "Figtree", "Segoe UI", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-padding-top: 88px; }
+
+@media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-isi);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--teks);
+    background-color: var(--kertas);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--biru); }
+
+:focus-visible {
+    outline: 3px solid var(--biru);
+    outline-offset: 3px;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-judul);
+    color: var(--navy);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.25rem, 7vw, 3.9rem); margin: 0 0 20px; }
+h2 { font-size: clamp(1.7rem, 4.5vw, 2.4rem); margin: 0 0 16px; }
+h3 { font-size: 1.15rem; letter-spacing: -0.01em; margin: 0 0 4px; }
+
+p { margin: 0 0 1em; max-width: 62ch; }
+
+.wadah {
+    width: 100%;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 2. Header dan menu */
+.header {
+    background-color: var(--navy);
+    color: var(--putih);
+}
+
+.header-isi {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px 24px;
+}
+
+.logo {
+    font-family: var(--font-judul);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    color: var(--putih);
+    text-decoration: none;
+}
+
+.menu { display: flex; flex-wrap: wrap; gap: 2px 18px; }
+
+.menu a {
+    color: #dbe6f5;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.menu a:hover { color: var(--putih); border-bottom-color: #7fd35f; }
+
+.header :focus-visible { outline-color: #ffffff; }
+
+@media (min-width: 860px) {
+    .header { position: sticky; top: 0; z-index: 10; }
+}
+
+/* 3. Hero */
+.hero { padding: 40px 0 48px; }
+
+.hero-grid {
+    display: grid;
+    gap: 32px;
+    align-items: center;
+}
+
+.hero-teks p { font-size: 1.15rem; color: var(--redup); }
+
+.hero-foto {
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    /* sudut dipotong miring, meniru bentuk plakat */
+    clip-path: polygon(0 0, calc(100% - 44px) 0, 100% 44px, 100% 100%, 44px 100%, 0 calc(100% - 44px));
+}
+
+@media (min-width: 860px) {
+    .hero { padding: 72px 0 80px; }
+    .hero-grid { grid-template-columns: 1fr 1.05fr; gap: 56px; }
+}
+
+/* Pita serpihan HDPE */
+.serpihan {
+    height: 36px;
+    background: #1f5fae url("../img/serpihan.svg") repeat-x left center;
+    background-size: auto 100%;
+}
+
+/* 4. Bagian-bagian halaman */
+.bagian { padding: 56px 0; }
+.bagian.putih { background-color: var(--putih); }
+
+@media (min-width: 860px) {
+    .bagian { padding: 88px 0; }
+
+    .dua-kolom {
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+        gap: 56px;
+        align-items: start;
+    }
+}
+
+/* 5. Tahap pembuatan */
+.pengantar { color: var(--redup); margin-bottom: 32px; }
+
+.langkah {
+    list-style: none;
+    counter-reset: langkah;
+    margin: 0 0 48px;
+    padding: 0;
+    max-width: 720px;
+}
+
+.langkah li {
+    counter-increment: langkah;
+    position: relative;
+    padding: 0 0 28px 64px;
+}
+
+.langkah li::before {
+    content: counter(langkah);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    background-color: var(--navy);
+    color: var(--putih);
+    font-family: var(--font-judul);
+    font-weight: 700;
+    font-size: 1.15rem;
+    clip-path: polygon(26% 0, 100% 0, 100% 74%, 74% 100%, 0 100%, 0 26%);
+}
+
+.langkah li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 50px;
+    bottom: 6px;
+    width: 2px;
+    background-color: var(--garis);
+}
+
+.langkah p { margin: 0; color: var(--redup); }
+
+.infografis { margin: 0; }
+
+.infografis img {
+    width: 100%;
+    border: 1px solid var(--garis);
+}
+
+.infografis figcaption {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--redup);
+}
+
+/* 6. Tabel harga */
+.harga {
+    width: 100%;
+    max-width: 520px;
+    margin-top: 24px;
+    border-collapse: collapse;
+}
+
+.harga th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--redup);
+    padding: 0 0 8px;
+    border-bottom: 2px solid var(--navy);
+}
+
+.harga td {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--garis);
+    font-size: 1.15rem;
+}
+
+.harga th:last-child,
+.harga td:last-child { text-align: right; }
+
+.harga td:last-child {
+    font-family: var(--font-judul);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--navy);
+}
+
+/* 7. Keunggulan */
+.keunggulan {
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0 48px;
+}
+
+.keunggulan li {
+    position: relative;
+    padding: 16px 0 16px 32px;
+    border-bottom: 1px solid var(--garis);
+}
+
+.keunggulan li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 24px;
+    width: 14px;
+    height: 14px;
+    background-color: var(--hijau);
+    clip-path: polygon(30% 0, 100% 0, 100% 70%, 70% 100%, 0 100%, 0 30%);
+}
+
+@media (min-width: 760px) {
+    .keunggulan { grid-template-columns: 1fr 1fr; }
+}
+
+/* 8. Tombol */
+.aksi {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+    margin-top: 24px;
+}
+
+.tombol {
+    display: inline-block;
+    font-family: var(--font-isi);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    padding: 13px 22px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.tombol-wa,
+.tombol-kirim {
+    background-color: var(--hijau);
+    color: var(--putih);
+}
+
+.tombol-wa:hover,
+.tombol-kirim:hover { background-color: var(--hijau-tua); }
+
+.tombol-ig {
+    background-color: transparent;
+    color: var(--navy);
+    border-color: var(--navy);
+}
+
+.tombol-ig:hover { background-color: var(--navy); color: var(--putih); }
+
+.tautan-lihat { font-weight: 600; color: var(--navy); }
+
+/* 9. Kontak dan form */
+address {
+    font-style: normal;
+    color: var(--redup);
+    margin-bottom: 4px;
+}
+
+.isian { margin-bottom: 18px; }
+
+.isian label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--teks);
+    background-color: var(--putih);
+    border: 1px solid #93a4b8;
+    border-radius: 6px;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--biru);
+    outline-offset: 1px;
+    border-color: var(--biru);
+}
+
+textarea { resize: vertical; }
+
+.tombol-kirim { width: 100%; }
+
+@media (min-width: 560px) {
+    .tombol-kirim { width: auto; }
+}
+
+/* 10. Footer */
+.footer {
+    background-color: var(--navy);
+    color: #dbe6f5;
+    text-align: center;
+    padding: 28px 20px;
+    font-size: 0.95rem;
+}
